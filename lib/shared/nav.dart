@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+import 'package:vacheck/pages/data.dart';
+import 'package:vacheck/pages/graph.dart';
+import 'package:vacheck/pages/home_page.dart';
+
+class Nav extends StatefulWidget {
+
+  @override
+  _NavState createState() => _NavState();
+}
+
+class _NavState extends State<Nav> {
+  int _currentIndex = 0;
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Vacheck'),
+      ),
+      body: _llamarPagina(_currentIndex),
+      bottomNavigationBar: _crearNavigationBar(),
+    );
+  }
+
+  Widget _crearNavigationBar() {
+    return BottomNavigationBar(
+        unselectedItemColor: Color.fromRGBO(168, 97, 93, 0.4),
+        iconSize: 30.0,
+        unselectedIconTheme: IconThemeData(size: 25.0),
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.data_usage), label: 'Data'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.bar_chart), label: 'Graph'),
+        ]);
+  }
+
+  Widget _llamarPagina(int paginaActual) {
+    switch (paginaActual) {
+      case 0:
+        return Data();
+      case 2:
+        return Chart();
+      default:
+        return HomePage();
+    }
+  }
+}
