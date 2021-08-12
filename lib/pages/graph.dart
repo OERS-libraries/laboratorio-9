@@ -16,7 +16,7 @@ class _ChartState extends State<Chart> {
   void _makeData(){
     _chardata.add(
       charts.Series(
-        domainFn: (Registro registro,_) => registro.fecha,
+        domainFn: (Registro registro,_) => registro.fecha + " "+ registro.hora,
         measureFn: (Registro registro,_) => registro.temperatura,
         id: 'Registros',
         data: _data,
@@ -52,9 +52,10 @@ class _ChartState extends State<Chart> {
             List<Registro> registros = <Registro>[];
             Map data = snapshot.data.snapshot.value;
             for(Map childata in data.values){
-              registros.add(Registro(childata["received_at"].toString(),
-                childata["uplink_message"]["decoded_payload"]["temperatura"].toString(),
-                  childata["uplink_message"]["decoded_payload"]["humedad"].toString()
+              var fecha = childata["received_at"].toString();
+              var temperatura = childata["uplink_message"]["decoded_payload"]["temperatura"].toString();
+              var humedad = childata["uplink_message"]["decoded_payload"]["humedad"].toString();
+              registros.add(Registro(fecha,temperatura,humedad
               ));
             }
             return _builChart(context,registros);
@@ -78,7 +79,7 @@ class _ChartState extends State<Chart> {
                     child: charts.BarChart(_chardata,
                     animate: true,
                     animationDuration: Duration(seconds: 1),
-                      barGroupingType: charts.BarGroupingType.groupedStacked,
+                      vertical: false,
                     ),
                 )
               ],
