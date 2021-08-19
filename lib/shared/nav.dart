@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vacheck/pages/data.dart';
-import 'package:vacheck/pages/graph.dart';
+import 'package:vacheck/pages/chart.dart';
 import 'package:vacheck/pages/home_page.dart';
 
 class Nav extends StatefulWidget {

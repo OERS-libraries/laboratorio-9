@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vacheck/pages/data.dart';
-import 'package:vacheck/pages/graph.dart';
+import 'package:vacheck/pages/chart.dart';
 import 'package:vacheck/pages/home_page.dart';
 import 'package:vacheck/shared/nav.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -15,7 +15,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _AppState extends State<MyApp> {
-  var _selectedIndex = 0;
   final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
   bool _initialized = false;
@@ -53,9 +52,6 @@ class _AppState extends State<MyApp> {
       initialRoute:'nav',
       routes:{
         'nav': (context) => Nav(),
-        'data': (context) => Data(),
-        'home': (context) => HomePage(),
-        'chart': (context) => Chart()
       },
       theme: ThemeData(
         primaryColor: Colors.red[400],
